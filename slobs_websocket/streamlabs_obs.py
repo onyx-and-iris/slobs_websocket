@@ -79,6 +79,7 @@ class StreamlabsOBS:
         self.thread_recv = None
         self.nextId = 0
         self.packets = {}
+        self.ws = None
         self.log = logging.getLogger(__name__)
         ch = logging.StreamHandler()
         self.log.addHandler(ch)
@@ -183,7 +184,8 @@ class StreamlabsOBS:
             self.thread_recv.running = False
 
         try:
-            self.ws.close()
+            if self.ws is not None:
+                self.ws.close()
         except socket.error:
             pass
 
