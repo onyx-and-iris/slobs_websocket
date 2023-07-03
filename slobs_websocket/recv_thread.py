@@ -52,7 +52,7 @@ class RecvThread(threading.Thread):
                     if event in self.events:
                         self.events[event]._processEvent(event.split(".")[1],data)
                     else:
-                        raise exceptions.EventError("Event {} not subscribed to yet!".format(event))
+                        self.log.error("Event {} not subscribed to yet!".format(event))
                 else:
                     self.log.error(u"Unknown message: {}".format(result))
             except websocket.WebSocketConnectionClosedException:

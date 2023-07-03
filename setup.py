@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="slobs-websocket",
-    version="0.1.0",
+    version="0.1.1",
     author="Mario Steele",
     author_email="mario@ruby-im.net",
     description="A StreamlabsOBS Websocket Library",
