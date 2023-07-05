@@ -9,7 +9,6 @@ import socket
 import time
 from pathlib import Path
 
-import tomli
 import websocket
 
 from . import exceptions
@@ -110,10 +109,15 @@ class StreamlabsOBS:
         self.StreamingService = StreamingService()
 
     def _conn_from_toml(self):
+        try:
+            import tomllib
+        except ModuleNotFoundError:
+            import tomli as tomllib
+            
         filepath = Path.cwd() / "config.toml"
         if filepath.is_file():
             with open(filepath, "rb") as f:
-                conn = tomli.load(f)
+                conn = tomllib.load(f)
             return conn["connection"]
 
     def __enter__(self):
